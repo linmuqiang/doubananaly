@@ -1,0 +1,45 @@
+# Python项目忽略规则
+__pycache__/
+*.py[cod]
+*$py.class
+.Python
+build/
+develop-eggs/
+dist/
+downloads/
+eggs/
+.eggs/
+lib/
+lib64/
+parts/
+sdist/
+var/
+*.egg-info/
+.installed.cfg
+*.egg
+
+# 日志文件
+*.log
+.log
+
+# 临时文件
+*.tmp
+*.temp
+
+# IDE配置文件
+.idea/
+.vscode/
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+*.sw?
+
+# 数据集文件过大，不提交到仓库
+*.csv
+
+# 可视化结果文件 (保留index.html)
+visualizations/*.png
+visualizations/top_comments.csv
+
+# 批处理文件和说明文件保留

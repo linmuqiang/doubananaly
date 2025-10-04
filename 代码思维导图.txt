@@ -1,0 +1,59 @@
+# douban_movie_analysis.py 代码思维导图
+
+## 核心结构
+- **DoubanMovieAnalysis类** - 主分析类
+  - 初始化参数设置
+  - 数据加载与预处理
+  - 多种数据分析方法
+  - 可视化结果输出
+
+## 数据处理流程
+1. **数据加载阶段**
+   - load_data() - 加载所有CSV文件
+     - movies.csv - 电影基本信息
+     - person.csv - 演员/导演信息
+     - users.csv - 用户信息
+     - ratings.csv - 评分数据
+     - comments.csv - 评论数据（多编码尝试）
+   - 使用分块读取(chunksize)处理大数据
+
+2. **数据预处理阶段**
+   - preprocess_data()
+     - 数据类型转换（评分、年份等数值类型转换）
+     - 无效数据过滤（如过滤无效年份）
+
+3. **数据分析阶段**
+   - 电影评分分析 - analyze_movie_ratings()
+   - 电影类型分析 - analyze_movie_genres()
+   - 年份趋势分析 - analyze_movies_over_years()
+   - 用户评分分析 - analyze_ratings_distribution()
+   - 高分电影分析 - analyze_top_rated_movies()
+   - 评论获赞分析 - analyze_comments_votes()
+   - 产地分布分析 - analyze_movie_countries()
+
+4. **可视化与输出**
+   - 生成各类图表（直方图、柱状图、折线图、饼图等）
+   - 保存图表至visualizations文件夹
+   - 保存评论分析结果至CSV文件
+
+## 技术实现
+- **数据处理库**
+  - pandas - 数据加载、清洗、处理
+- **可视化库**
+  - matplotlib - 基础绘图功能
+  - seaborn - 增强可视化效果
+- **其他功能**
+  - os模块 - 文件路径处理和目录创建
+  - datetime模块 - 日期处理
+  - 中文字体设置 - 确保图表中文正常显示
+
+## 执行流程
+- 主程序入口执行run_analysis()方法
+- 依次调用数据加载、预处理和各项分析方法
+- 最终将所有分析结果保存到指定目录
+
+## 扩展与优化点
+- 支持不同编码格式的数据文件加载
+- 分块处理大文件避免内存溢出
+- 灵活的参数配置（如数据目录、输出目录等）
+- 完整的错误处理机制
