@@ -54,8 +54,8 @@ homepage: true
 - STORYLINE: 电影描述
 - SLUG: 加密的url，可忽略
 - YEAR: 年份
-- ACTOR_IDS: 演员与PERSON_ID的对应关系,多个演员采用“|”符号分割，格式“演员A:ID|演员B:ID”；
-- DIRECTOR_IDS: 导演与PERSON_ID的对应关系,多个导演采用“|”符号分割，格式“导演A:ID|导演B:ID”；
+- ACTOR_IDS: 演员与PERSON_ID的对应关系,多个演员采用"|"符号分割，格式"演员A:ID|演员B:ID"；
+- DIRECTOR_IDS: 导演与PERSON_ID的对应关系,多个导演采用"|"符号分割，格式"导演A:ID|导演B:ID"；
 
 ### Person数据格式
 
