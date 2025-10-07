@@ -1,0 +1,60 @@
+# 豆瓣电影数据分析项目 - Gitee上传指南
+
+## 当前状态
+您的项目已经成功初始化Git仓库并创建了提交，但在推送到Gitee时遇到了网络连接问题。
+
+## 手动上传步骤
+
+### 步骤1：确保网络连接正常
+请检查您的网络连接，特别是是否可以访问Gitee网站。
+
+### 步骤2：使用Git命令行手动推送
+1. 打开命令提示符(cmd.exe)或Git Bash
+2. 导航到您的项目目录：
+   ```
+   cd C:\Users\98484\Desktop\笔记\豆瓣电影数据集
+   ```
+3. 确保远程仓库已添加：
+   ```
+   git remote -v
+   ```
+   如果没有看到gitee远程仓库，请添加：
+   ```
+   git remote add gitee https://gitee.com/fu-mengqiang/douban-analysis.git
+   ```
+4. 尝试推送：
+   ```
+   git push -u gitee master
+   ```
+
+### 步骤3：如果HTTPS连接失败，尝试使用SSH连接
+1. 生成SSH密钥（如果您还没有）：
+   ```
+   ssh-keygen -t ed25519 -C "984841296@qq.com"
+   ```
+2. 将公钥添加到您的Gitee账户
+3. 修改远程仓库URL为SSH格式：
+   ```
+   git remote set-url gitee git@gitee.com:fu-mengqiang/douban-analysis.git
+   ```
+4. 再次尝试推送
+
+### 步骤4：使用Gitee桌面客户端
+如果命令行方法仍然失败，您可以尝试使用Gitee桌面客户端来上传您的项目。
+
+## 常见问题解决
+- **网络连接问题**：检查防火墙设置，确保Git可以访问网络
+- **认证问题**：使用个人访问令牌(PAT)代替密码，或者设置SSH密钥
+- **权限问题**：确保您有对目标仓库的写权限
+
+## 项目文件列表
+您的项目包含以下主要文件：
+- .gitignore - Git忽略规则文件
+- PROJECT_README.md - 项目说明文档
+- README.md - 简短说明文档
+- douban_movie_analysis.py - 主要分析脚本
+- visualizations/ - 可视化相关文件
+- git_upload_commands.bat - 上传命令脚本
+- 代码思维导图.txt - 项目思维导图
+
+如果您在操作过程中遇到任何问题，可以随时参考此指南或联系Gitee客服获取帮助。

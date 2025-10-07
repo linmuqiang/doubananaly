@@ -1,0 +1,105 @@
+# SSH连接Gitee配置指南
+
+## 当前问题分析
+当尝试使用SSH连接到Gitee时，出现了以下错误：
+```
+The authenticity of host 'gitee.com (180.76.199.13)' can't be established.
+ED25519 key fingerprint is SHA256:+ULzij2u99B9eWYFTw1Q4ErYG/aepHLbu96PAUCoV88.
+This key is not known by any other names.
+Are you sure you want to continue connecting (yes/no/[fingerprint])?
+Host key verification failed.
+fatal: Could not read from remote repository.
+```
+
+这是SSH的安全机制，当首次连接到新的远程主机时，系统会要求验证主机的真实性。
+
+## 手动配置步骤
+
+### 步骤1：在本地命令提示符中完成主机验证
+1. 打开命令提示符(cmd.exe)或Git Bash
+2. 导航到您的项目目录：
+   ```
+   cd C:\Users\98484\Desktop\笔记\豆瓣电影数据集
+   ```
+3. 运行以下命令测试SSH连接：
+   ```
+   ssh -T git@gitee.com
+   ```
+4. 当出现主机验证提示时，输入`yes`并按Enter键确认
+   ```
+   The authenticity of host 'gitee.com (180.76.199.13)' can't be established.
+   ED25519 key fingerprint is SHA256:+ULzij2u99B9eWYFTw1Q4ErYG/aepHLbu96PAUCoV88.
+   Are you sure you want to continue connecting (yes/no/[fingerprint])? yes
+   ```
+
+### 步骤2：检查SSH密钥配置
+1. 检查您是否已经生成了SSH密钥：
+   ```
+   dir %USERPROFILE%\.ssh
+   ```
+2. 如果没有看到id_rsa.pub或id_ed25519.pub文件，需要生成新的SSH密钥：
+   ```
+   ssh-keygen -t ed25519 -C "984841296@qq.com"
+   ```
+   按Enter接受默认位置，设置密码（可选）
+
+3. 查看并复制公钥内容：
+   ```
+   type %USERPROFILE%\.ssh\id_ed25519.pub
+   ```
+
+### 步骤3：将SSH公钥添加到Gitee账户
+1. 登录Gitee网站（https://gitee.com）
+2. 点击右上角头像 → 设置 → SSH公钥
+3. 粘贴您复制的公钥内容到"公钥"文本框
+4. 设置一个标题（如"我的笔记本电脑"）
+5. 点击"确定"保存
+
+### 步骤4：验证SSH连接
+1. 在命令提示符中再次测试连接：
+   ```
+   ssh -T git@gitee.com
+   ```
+2. 如果成功，您将看到欢迎信息，如：
+   ```
+   Hi fu-mengqiang! You've successfully authenticated, but GITEE.COM does not provide shell access.
+   ```
+
+### 步骤5：推送代码到Gitee
+1. 确保您的项目已经配置了正确的远程仓库：
+   ```
+   git remote -v
+   ```
+   如果没有看到gitee远程仓库，添加它：
+   ```
+   git remote add gitee git@gitee.com:fu-mengqiang/douban-analysis.git
+   ```
+
+2. 推送代码：
+   ```
+   git push -u gitee master
+   ```
+
+## 常见问题解决
+
+### 问题1：仍然无法连接到Gitee
+- 检查防火墙设置，确保SSH端口22没有被阻止
+- 尝试临时关闭防火墙或安全软件
+- 确认您的网络可以访问Gitee的SSH服务器
+
+### 问题2：SSH密钥权限问题
+确保您的SSH密钥文件权限正确：
+```
+# 在Git Bash中运行
+chmod 700 ~/.ssh
+chmod 600 ~/.ssh/id_ed25519
+chmod 644 ~/.ssh/id_ed25519.pub
+```
+
+### 问题3：如果上述方法都失败
+作为备选方案，您可以：
+1. 使用Gitee桌面客户端（https://gitee.com/desktop）上传您的代码
+2. 直接在Gitee网站上通过Web界面上传文件
+3. 使用HTTPS协议并配置个人访问令牌(PAT)进行认证
+
+按照这些步骤操作后，您应该能够成功将代码推送到Gitee仓库。如果您仍然遇到问题，请参考Gitee的官方SSH文档或联系Gitee客服获取更多帮助。
