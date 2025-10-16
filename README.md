@@ -107,15 +107,6 @@ users.csv数据为豆瓣用户的无脱敏信息，主要是与评论和评分�
 - COMMENT_TIME: 评论时间
 
 
-## 下载地址
-
-样例数据已上传至：[http://moviedata.csuldw.com/dataset/moviedata_small.tar.gz](http://moviedata.csuldw.com/dataset/moviedata_small.tar.gz)，每个文件1000条数据，完整的数据集已存放到网盘中，需要的用户可以前去下载，密码需前往微信公众号获取(不定期更换)，获取方式如下: 
-
-1. 微信搜索**【斗码小院】**公众号并点击关注;
-2. 回复**【电影数据集】**获取密码.
-
-数据采集不易，为了初步了解多少人使用该数据，还请各位使用人员不要公开进行二次转发，多谢！"授人以鱼不如授人以渔"，
-如果您对爬虫技术感兴趣，可前往Github参考笔者的[AntSpider](https://github.com/csuldw/AntSpider)项目源码。如果数据对您有用，还请关注下公众号[斗码小院](http://www.csuldw.com/assets/articleImg/2019/code-main-fun.png)，并在下方的Github中点击一下Star。
 
 
 ## 参与贡献
