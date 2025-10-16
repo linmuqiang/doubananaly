@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>豆瓣电影数据集可视化分析</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Helvetica Neue', Arial, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background-color: #f8f9fa;
+        }
+        .container {
+            max-width: 1200px;
+        }
+        .header {
+            background-color: #343a40;
+            color: white;
+            padding: 2rem 0;
+            margin-bottom: 2rem;
+        }
+        .section {
+            margin-bottom: 3rem;
+            background: white;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            padding: 2rem;
+        }
+        .chart-container {
+            margin-top: 1.5rem;
+            margin-bottom: 1.5rem;
+        }
+        .chart-title {
+            font-size: 1.5rem;
+            font-weight: 600;
+            margin-bottom: 1rem;
+            color: #495057;
+        }
+        .chart-img {
+            width: 100%;
+            border-radius: 4px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+            transition: transform 0.3s ease;
+        }
+        .chart-img:hover {
+            transform: scale(1.01);
+        }
+        .summary-card {
+            background-color: #e9ecef;
+            border-radius: 8px;
+            padding: 1.5rem;
+            margin-bottom: 1.5rem;
+        }
+        .footer {
+            background-color: #343a40;
+            color: white;
+            padding: 2rem 0;
+            margin-top: 3rem;
+        }
+        .data-stats {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1rem;
+            margin-bottom: 2rem;
+        }
+        .stat-card {
+            flex: 1;
+            min-width: 200px;
+            background-color: #007bff;
+            color: white;
+            border-radius: 8px;
+            padding: 1.5rem;
+            text-align: center;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+        }
+        .stat-number {
+            font-size: 2rem;
+            font-weight: bold;
+            margin-bottom: 0.5rem;
+        }
+        .stat-label {
+            font-size: 1rem;
+            opacity: 0.9;
+        }
+    </style>
+</head>
+<body>
+    <header class="header">
+        <div class="container">
+            <h1 class="text-center">豆瓣电影数据集可视化分析</h1>
+            <p class="text-center text-muted mt-2">基于2019年豆瓣电影数据的综合分析</p>
+        </div>
+    </header>
+
+    <div class="container">
+        <!-- 数据统计概览 -->
+        <section class="section">
+            <h2 class="text-center mb-4">数据概览</h2>
+            <div class="data-stats">
+                <div class="stat-card">
+                    <div class="stat-number">140,502</div>
+                    <div class="stat-label">电影总数</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-number">72,959</div>
+                    <div class="stat-label">演员/导演总数</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-number">639,125</div>
+                    <div class="stat-label">用户总数</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-number">4.17M</div>
+                    <div class="stat-label">评分记录</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-number">1.05M</div>
+                    <div class="stat-label">评论记录</div>
+                </div>
+            </div>
+            
+            <div class="summary-card">
+                <h3>数据集简介</h3>
+                <p>本数据集采集于豆瓣电影，包含电影信息、演员/导演信息、用户信息、电影评分和评论数据。电影与演员数据收集于2019年8月上旬，影评数据(用户、评分、评论)收集于2019年9月初。这是一份全面的电影数据集，为电影研究、推荐系统开发等提供了丰富的基础数据。</p>
+            </div>
+        </section>
+
+        <!-- 电影评分分布 -->
+        <section class="section">
+            <h2 class="text-center chart-title">电影评分分布</h2>
+            <div class="summary-card">
+                <p>该图表展示了豆瓣电影评分的整体分布情况。通过观察评分分布，我们可以了解观众对电影的整体评价倾向。</p>
+            </div>
+            <div class="chart-container text-center">
+                <img src="movie_rating_distribution.png" alt="电影评分分布" class="chart-img">
+            </div>
+        </section>
+
+        <!-- 电影类型分布 -->
+        <section class="section">
+            <h2 class="text-center chart-title">电影类型分布前20名</h2>
+            <div class="summary-card">
+                <p>该图表展示了电影类型的分布情况，按电影数量排序取前20名。这有助于我们了解电影市场中最受欢迎的类型。</p>
+            </div>
+            <div class="chart-container text-center">
+                <img src="movie_genre_distribution.png" alt="电影类型分布" class="chart-img">
+            </div>
+        </section>
+
+        <!-- 电影数量随年份变化 -->
+        <section class="section">
+            <h2 class="text-center chart-title">电影数量随年份变化趋势</h2>
+            <div class="summary-card">
+                <p>该图表展示了每年电影产量的变化趋势。通过观察这一趋势，我们可以了解电影产业的发展历程和变化规律。</p>
+            </div>
+            <div class="chart-container text-center">
+                <img src="movies_over_years.png" alt="电影数量随年份变化" class="chart-img">
+            </div>
+        </section>
+
+        <!-- 用户评分分布 -->
+        <section class="section">
+            <h2 class="text-center chart-title">用户评分分布</h2>
+            <div class="summary-card">
+                <p>该图表展示了用户对电影的评分分布情况。这有助于我们了解用户的评分习惯和偏好。</p>
+            </div>
+            <div class="chart-container text-center">
+                <img src="user_rating_distribution.png" alt="用户评分分布" class="chart-img">
+            </div>
+        </section>
+
+        <!-- 评分最高的电影 -->
+        <section class="section">
+            <h2 class="text-center chart-title">评分最高的20部电影 (投票数>1000)</h2>
+            <div class="summary-card">
+                <p>该图表展示了豆瓣评分最高的20部电影（仅考虑投票数超过1000的电影以确保数据的可靠性）。这些电影代表了豆瓣用户评价最高的作品。</p>
+            </div>
+            <div class="chart-container text-center">
+                <img src="top_rated_movies.png" alt="评分最高的电影" class="chart-img">
+            </div>
+        </section>
+
+        <!-- 电影产地分布 -->
+        <section class="section">
+            <h2 class="text-center chart-title">电影产地分布前15名</h2>
+            <div class="summary-card">
+                <p>该图表展示了电影产地的分布情况，以饼图形式呈现前15个主要产地。这有助于我们了解全球电影产业的地域分布。</p>
+            </div>
+            <div class="chart-container text-center">
+                <img src="movie_countries_distribution.png" alt="电影产地分布" class="chart-img">
+            </div>
+        </section>
+
+        <!-- 评论分析 -->
+        <section class="section">
+            <h2 class="text-center chart-title">评论分析</h2>
+            <div class="summary-card">
+                <p>我们分析了用户评论的获赞情况，并提取了获赞最多的20条评论。这些高赞评论通常包含有价值的观影体验或深刻的电影见解。</p>
+                <p>获赞最多的评论已保存至 <strong>top_comments.csv</strong> 文件中。</p>
+            </div>
+        </section>
+
+        <!-- 结论 -->
+        <section class="section">
+            <h2 class="text-center">分析结论</h2>
+            <div class="summary-card">
+                <h3>主要发现</h3>
+                <ol>
+                    <li><strong>评分分布特征：</strong>豆瓣电影评分呈现出一定的分布规律，可能反映了用户的评价习惯和电影质量的整体情况。</li>
+                    <li><strong>类型偏好：</strong>从电影类型分布可以看出观众对不同类型电影的偏好，这对电影制作和发行具有指导意义。</li>
+                    <li><strong>产业发展：</strong>电影数量随年份的变化趋势反映了电影产业的发展历程和变化规律。</li>
+                    <li><strong>地域分布：</strong>电影产地的分布展示了全球电影产业的地域特征，不同国家和地区的电影产业发展水平存在差异。</li>
+                    <li><strong>用户行为：</strong>用户评分分布和高赞评论反映了用户的观影偏好和评价行为特征。</li>
+                </ol>
+                
+                <h3>应用价值</h3>
+                <ul>
+                    <li>为电影制作方提供市场参考，了解观众偏好和市场趋势。</li>
+                    <li>为电影推荐系统的开发提供数据基础。</li>
+                    <li>为电影产业研究提供实证数据支持。</li>
+                    <li>为普通观众选择电影提供参考依据。</li>
+                </ul>
+            </div>
+        </section>
+    </div>
+
+    <footer class="footer">
+        <div class="container text-center">
+            <p>© 2023 豆瓣电影数据集可视化分析</p>
+            <p class="text-sm text-muted">本分析基于公开的豆瓣电影数据集，仅供研究和学习使用</p>
+        </div>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
